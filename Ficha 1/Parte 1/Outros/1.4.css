@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.c {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  border: 1px solid black;
+  margin: 2px;
+}
+
+.a {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  margin: 2px;
+  border: 0px;
+}
+
+div div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+aside {
+  display: flex;
+  border: 1px solid black;
+  width: 50%;
+  margin: 2px 0px 2px 2px;
+}
+
+div section{
+    display: flex;
+    width: 99%;
+    height: 50%;
+    border: 1px solid black;
+    margin: 2px 2px 2px 0px;
+}
+
+div article{
+    display: flex;
+    width: 99%;
+    height: 50%;
+    border: 1px solid black;
+    margin: 2px 2px 2px 0px;
+}

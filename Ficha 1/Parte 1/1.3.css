@@ -1,0 +1,11 @@
+.form_example {
+  margin-bottom: 4px;
+}
+form {
+  border: 2px solid black;
+  padding: 5px;
+}
+
+.submit{
+  padding: 0 68px;
+}

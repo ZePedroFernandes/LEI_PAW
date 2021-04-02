@@ -1,0 +1,18 @@
+@media (min-width: 720px) {
+  html {
+    background-color: orange;
+  }
+}
+
+@media (max-width: 720px) {
+  html {
+    background-color: blue;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    background-color: green;
+  }
+}
+
