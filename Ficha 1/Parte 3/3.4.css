@@ -1,45 +1,179 @@
-body{
-    margin: 0%;
+body {
+  margin: 0%;
+  display: flex;
+  flex-direction: column;
+}
+
+div {
+  flex-direction: column;
+}
+
+figcaption {
+  color: #fe642e;
+  font-weight: bold;
+}
+
+footer {
+  background-color: #fe642e;
+}
+
+a {
+  padding: 10px;
+  color: #e9e9e9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  background-color: #e9e9e9;
+  color: #fe642e;
+}
+
+/*--------------------Header--------------------*/
+
+header {
+  color: #fe642e;
+  background-color: #e9e9e9;
+  margin: 0px;
+  width: 100%;
+}
+
+header h1 {
+  margin: 0px;
+  text-align: center;
+  font-size: 50px;
+}
+
+/*----------------------Nav---------------------*/
+
+nav {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  height: 40px;
+  background-color: #fe642e;
+}
+
+/*--------------------Recepie-------------------*/
+
+.container {
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  border-top: 1px groove gainsboro;
+  margin: 10px;
+}
+
+.stats p {
+  margin: 5px;
+}
+
+.listTitle {
+  padding: 10px;
+  margin: 0px;
+  color: #fe642e;
+}
+
+.ingredientsList {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 10px 0px;
+}
+
+.ingredients {
+  margin-bottom: 10px;
+}
+
+.preparation {
+  margin-top: 10px;
+}
+
+.preparationList {
+  margin: 0px 0px 10px 0px;
+  list-style-type: decimal;
+}
+
+.preparationList li {
+  padding: 10px;
+  text-align: justify;
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+img.primaryImg {
+  display: flex;
+  width: 70%;
+  max-width: 600px;
+}
+
+/*---------------------Footer--------------------*/
+
+footer ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0%;
+  padding: 0;
+  height: 40px;
+}
+footer ul * {
+  display: flex;
+}
+
+li {
+  height: 100%;
+}
+
+/*Media Query*/
+@media (max-width: 720px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  .stats * {
+    font-size: 11px;
+  }
+
+  .time {
+    display: none;
+  }
+
+  #middleBody {
     display: flex;
     flex-direction: column;
-}
+  }
 
-header{
+  nav {
+    display: flex;
+    height: auto;
+    flex-flow: row wrap;
+    font-size: 13px;
+  }
+
+  ul {
+    padding-left: 10px;
+    font-size: 11px;
+  }
+
+  li::marker {
     color: #fe642e;
-    background-color: #e9e9e9;
-    margin: 0px;
+  }
+
+  img.primaryImg {
     width: 100%;
-}
+  }
 
-header h1{
-    margin: 0px;
-    padding: 0.5rem;
-    text-align: center;
-}
+  figcaption {
+    font-size: 10px;
+  }
 
-
-footer{
-    background-color: #fe642e;
-}
-
-footer ul{
-    display: flex;
-    list-style-type: none;
-    margin: 0%;
-    padding: 0;
-    height: 40px;
-}
-ul *{
-    display: flex;
-}
-
-a{
-    padding: 10px;
-    color: #e9e9e9;
-    text-decoration: none;
-    font-weight: bold;
-}
-a:hover{
-    background-color: #e9e9e9;
-    color: #fe642e;
+  footer {
+    font-size: 13px;
+  }
 }

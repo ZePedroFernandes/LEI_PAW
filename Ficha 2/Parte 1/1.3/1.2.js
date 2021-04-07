@@ -40,7 +40,7 @@ function element(index) {
 }
 console.log(element(-1));
 
-function sample(c = "") {
+function sample(c = "c") {
     console.log(c)
 }
 sample()
