@@ -133,7 +133,7 @@ function isPrime(number = 1) {
 */
 function toCoins(centimos = 0) {
     var resultado = [];
-    var moedas = [20000,10000,5000,2000,1000,500,200,100,50,20,10,5,2,1];
+    var moedas = [20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
     // moedas.sort((moeda1, moeda2) => {
     //     return moeda2 - moeda1;
     // });
@@ -160,9 +160,62 @@ function getNumberOfPossibleCoins(centimos = 0, valorMoeda = 1) {
     return Math.floor(centimos / valorMoeda);
 }
 
-console.log(toCoins(99800));
+//console.log(toCoins(99800));
 
 
 // Crie uma função que verifique se uma palavra passada como argumento é um palíndromo
 // e retorne um booleano (true/fasle).
 
+function isPalindromo(string = "") {
+    var lenght = Math.floor(string.length / 2);
+    var str1 = string.slice(0, lenght);
+    var tmp = string.slice(-lenght, string.length);
+    var str2 = "";
+
+    for (let i = 0; i <= tmp.length; i++) {
+        str2 += tmp.charAt(tmp.length - i);
+    }
+
+    return str1 === str2;
+}
+
+//console.log(isPalindromo("polilop"));
+
+// Crie uma função que retorne o número de dias do mês de uma data passada como
+// parâmetro. (Nota: tenha em consideração o Objecto Date e o facto de existirem anos
+// bissextos.)
+
+function monthNumberOfDays(date = new Date()) {
+    var month = date.getMonth() + 1;
+    var days;
+    if (month === 2) {
+        if (date.getFullYear() % 4 === 0) {
+            days = 29;
+        } else {
+            days = 28;
+        }
+    } else {
+        if (month <= 7) {
+            days = 30 + (month % 2);
+        } else {
+            days = 31 - (month % 2);
+        }
+    }
+    return days;
+}
+
+var date = new Date("2001-02-01")
+console.log(date);
+console.log(monthNumberOfDays(date));
+console.log(monthNumberOfDays(new Date("2020-01-01")));
+console.log(monthNumberOfDays(new Date("2020-02-01")));
+console.log(monthNumberOfDays(new Date("2020-03-01")));
+console.log(monthNumberOfDays(new Date("2020-04-01")));
+console.log(monthNumberOfDays(new Date("2020-05-01")));
+console.log(monthNumberOfDays(new Date("2020-06-01")));
+console.log(monthNumberOfDays(new Date("2020-07-01")));
+console.log(monthNumberOfDays(new Date("2020-08-01")));
+console.log(monthNumberOfDays(new Date("2020-09-01")));
+console.log(monthNumberOfDays(new Date("2020-10-01")));
+console.log(monthNumberOfDays(new Date("2020-11-01")));
+console.log(monthNumberOfDays(new Date("2020-12-01")));
