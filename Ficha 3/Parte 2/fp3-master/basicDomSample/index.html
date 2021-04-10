@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formatar DOM</title>
+
+    <style>
+      body {
+        margin: 10px 100px 10px 100px;
+      }
+
+      fieldset > * {
+        display: block;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px 100px 10px 100px;
+        margin: 10px 0px 10px 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <article>
+      <h1>Lorem ipsum dolor sit</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure nesciunt
+        ea unde magnam assumenda corrupti a accusamus beatae nam natus!
+      </p>
+      <p>
+        Enim quia aliquam harum doloremque magni asperiores exercitationem
+        aspernatur distinctio accusantium quidem molestiae ab excepturi qui,
+        culpa, minus quas laudantium?
+      </p>
+      <p>
+        Reiciendis possimus quod aliquam in quisquam ab alias ratione cum
+        suscipit praesentium ut nam, quas magnam, tenetur quibusdam dolores
+        nostrum.
+      </p>
+      <p>
+        Voluptates, tenetur quos modi in laudantium libero consectetur quas
+        aliquid rem suscipit sunt! Accusantium, possimus harum! Dolorem qui
+        nesciunt ea?
+      </p>
+      <p>
+        Voluptatem veritatis, cumque, expedita voluptas neque quasi omnis
+        asperiores minima consectetur molestias maiores voluptates quod ad
+        obcaecati? Alias, aut ullam.
+      </p>
+    </article>
+    <fieldset>
+      <legend>Caixa de acções</legend>
+      <button onclick="centerText()">Centrar título</button>
+      <button onclick="justifyText()">Justificar paragrafos</button>
+      <button onclick="hideOddParagraphs()">Esconder paragrafos pares</button>
+      <button onclick="showOddParagraphs()">Mostrar paragrafos pares</button>
+      <button onclick="redParagraphs()">Paragrafos a vermelho</button>
+      <button onclick="blackParagraphs()">Paragrafos a preto</button>
+      <button onclick="hideLastParagraph()">Esconder ultimo paragrafo</button>
+      <button onclick="reset()">Reset</button>
+    </fieldset>
+    <button onclick="nextPage()">Next</button>
+
+    <script>
+      function centerText() {
+        const title = document.getElementsByTagName("h1");
+        title[0].style.textAlign = "center";
+      }
+
+      function justifyText() {
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.textAlign = "justify";
+        }
+      }
+
+      function hideOddParagraphs() {
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          if ((i + 1) % 2 === 0) {
+            paragraphs[i].style.visibility = "hidden";
+          }
+        }
+      }
+
+      function showOddParagraphs() {
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          if ((i + 1) % 2 === 0) {
+            paragraphs[i].style.visibility = "visible";
+          }
+        }
+      }
+
+      function redParagraphs() {
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.color = "red";
+        }
+      }
+
+      function blackParagraphs() {
+        const paragraphs = document.getElementsByTagName("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          paragraphs[i].style.color = "black";
+        }
+      }
+
+      function hideLastParagraph() {
+        const paragraphs = document.getElementsByTagName("p");
+        paragraphs[paragraphs.length - 1].style.visibility = "hidden";
+      }
+
+      function reset() {
+        window.location.reload(false);
+      }
+
+      function nextPage() {
+        window.open("./formInputs.html");
+      }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obter Dados de Input</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="./js/main.js"></script>
+  </head>
+
+  <body>
+    <fieldset>
+      <legend>Introdução de dados</legend>
+      <form id="myForm">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" value="Zé"></input>
+        </div>
+        <div class="form-group">
+          <label for="idade">Idade</label>
+          <input id="idade" type="number" min="0" max="120" value = "19"/>
+        </div>
+        <div class="form-group">
+          <label for="satisfaction">Grau de Satisifação</label>
+          <input id="satisfaction" type="range" min="0" max="100" value = "75"/>
+        </div>
+        <div class="form-group">
+          <label for="cor">Cor Favorita</label>
+          <input id="cor" type="color" value="#001eff"/>
+        </div>
+        <div class="form-group">
+          <label for="time">Hora Favorita</label>
+          <input id="time" type="time" value="00:00"/>
+        </div>
+        <div class="form-group">
+          <label for="data">Data Favorito</label>
+          <input id="data" type="date" value="2001-10-17"/>
+        </div>
+        <div class="form-group">
+          <label for="yesStudy">Vai estudar hoje?</label>
+          <input id="yesStudy" name="estudar" type="radio" value="Sim" checked = "checked"/> <span>Sim</span>
+          <input id="noStudy" name="estudar" type="radio" value="Nao" /> <span>Não</span>
+        </div>
+        <div class="form-group">
+          <label for="cars">Dia Favorito</label>
+          <select name="weekDay" id="weekDay">
+            <option value="Seg">Segunda-feira</option>
+            <option value="Ter">Terça-feira</option>
+            <option value="Qua">Quarta-feira</option>
+            <option value="Qui">Quinta-feira</option>
+            <option value="Sex">Sexta-feira</option>
+            <option value="Sab">Sábado</option>
+            <option value="Dom" selected="selected  ">Domingo</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="male">Genero</label>
+          <input type="radio" id="male" name="gender" value="Masculino" checked = "checked"/>
+          <span>M</span>
+          <input type="radio" id="female" name="gender" value="Feminino" />
+          <span>F</span>
+        </div>
+        <div class="form-group">
+          <button id="submeter">Submeter</button>
+        </div>
+      </form>
+    </fieldset>
+
+    <div id="resultados">
+      <h1>Dados Obtidos</h1>
+      <div class="flex-container">
+        <div>Nome:</div>
+        <div id = "nameDisplay"></div>
+        <div>Idade:</div>
+        <div id = "ageDisplay"></div>
+        <div>Grau de Satisifação:</div>
+        <div id = "satisfactionDisplay"></div>
+        <div>Cor Favorita:</div>
+        <div id = "colorDisplay"></div>
+        <div>Hora Favorita:</div>
+        <div id = "hourDisplay"></div>
+        <div>Data Favorita:</div>
+        <div id = "dateDisplay"></div>
+        <div>Vai Estudar Hoje:</div>
+        <div id = "studyDisplay"></div>
+        <div>Dia Favorito:</div>
+        <div id = "weekDayDisplay"></div>
+        <div>Genero:</div>
+        <div id = "genreDisplay"></div>
+      </div>
+    </div>
+
+    <a href="./index.html">Next</a>
+  </body>
+</html>

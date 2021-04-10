@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <form>
+      <label for="email">Please provide your email</label>
+      <input type="email" id="email" name="email" />
+      <button>Submit</button>
+    </form>
+
+    <script>
+      var email = document.getElementById("email");
+      email.addEventListener("input", function (event) {
+        if (email.validity.typeMismatch) {
+          email.setCustomValidity("I expected a valid email");
+        } else {
+          email.setCustomValidity("");
+        }
+      });
+    </script>
+  </body>
+</html>

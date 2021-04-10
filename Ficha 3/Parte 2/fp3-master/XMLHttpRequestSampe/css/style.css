@@ -1,0 +1,68 @@
+[class^=col-] {
+    grid-column-end: span 12;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 15px;
+    height: 2em;
+    justify-items: center;
+    align-items: stretch;
+}
+
+.col-md-1 {
+    grid-column-end: span 1;
+}
+.col-md-2 {
+    grid-column-end: span 2;
+}
+.col-md-3 {
+    grid-column-end: span 3;
+}
+.col-md-4 {
+    grid-column-end: span 4;
+}
+.col-md-5 {
+    grid-column-end: span 5;
+}
+.col-md-6 {
+    grid-column-end: span 6;
+}
+.col-md-7 {
+    grid-column-end: span 7;
+}
+.col-md-8 {
+    grid-column-end: span 8;
+}
+.col-md-9 {
+    grid-column-end: span 9;
+}
+.col-md-10 {
+    grid-column-end: span 10;
+}
+.col-md-11 {
+    grid-column-end: span 11;
+}
+.col-md-12 {
+    grid-column-end: span 12;
+}
+
+.left{
+    justify-self: left;
+    align-self: center;
+}
+
+.center{
+    justify-self: center;
+    align-self: center;
+}
+
+dialog{
+    height: 500px;
+}
+
+#mapdialog {
+    height: 200px;
+    width: 300px;
+}

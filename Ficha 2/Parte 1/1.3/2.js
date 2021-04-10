@@ -205,17 +205,4 @@ function monthNumberOfDays(date = new Date()) {
 }
 
 var date = new Date("2001-02-01")
-console.log(date);
 console.log(monthNumberOfDays(date));
-console.log(monthNumberOfDays(new Date("2020-01-01")));
-console.log(monthNumberOfDays(new Date("2020-02-01")));
-console.log(monthNumberOfDays(new Date("2020-03-01")));
-console.log(monthNumberOfDays(new Date("2020-04-01")));
-console.log(monthNumberOfDays(new Date("2020-05-01")));
-console.log(monthNumberOfDays(new Date("2020-06-01")));
-console.log(monthNumberOfDays(new Date("2020-07-01")));
-console.log(monthNumberOfDays(new Date("2020-08-01")));
-console.log(monthNumberOfDays(new Date("2020-09-01")));
-console.log(monthNumberOfDays(new Date("2020-10-01")));
-console.log(monthNumberOfDays(new Date("2020-11-01")));
-console.log(monthNumberOfDays(new Date("2020-12-01")));

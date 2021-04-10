@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PAW Tutorial</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Titulo 1</h1>
+    <div id="div1">
+      <p id="p1">Paragrafo 1.</p>
+    </div>
+    <button onclick="addParagraph()">Add</button>
+
+    <script>
+      var counter = 2;
+      function addParagraph() {
+        var para = document.createElement("p");
+        var node = document.createTextNode("Paragrafo " + counter);
+        para.appendChild(node);
+        var element = document.getElementById("div1");
+        element.appendChild(para);
+        counter++;
+      }
+      
+    </script>
+  </body>
+</html>

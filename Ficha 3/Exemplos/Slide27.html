@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PAW Tutorial</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Titulo 1</h1>
+    <div id="div1">
+      <p>Paragrafo 1.</p>
+      <p>Paragrafo 2.</p>
+      <p>Paragrafo 3.</p>
+      <p>Paragrafo 4.</p>
+      <p>Paragrafo 5.</p>
+      <p>Paragrafo 6.</p>
+      <p>Paragrafo 7.</p>
+      <p>Paragrafo 8.</p>
+    </div>
+    
+    <script>
+      var i;
+      var elements = document.getElementsByTagName("p");
+      for (i = 0; i < elements.length; i++) {
+        if (i % 2 == 0) {
+          elements[i].style.backgroundColor = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

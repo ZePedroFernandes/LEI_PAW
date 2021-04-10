@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAW </title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Leaflet Library -->
+    <!-- css -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+</head>
+
+<body>
+
+    <div id="customerTable">
+
+        <div class="row">
+            <div class="col-md-2 center">
+                Number
+            </div>
+            <div class="col-md-4 left">
+                Name
+            </div>
+            <div class="col-md-4 left">
+                Adress
+            </div>
+            <div class="col-md-2 center">
+                Actions
+            </div>
+        </div>
+<!-- As duas entradas na lista são apenas exemplos e devem ser gerados dinamicamente -->
+        <div class="row">
+            <div class="col-md-2 center">
+                1
+            </div>
+            <div class="col-md-4 left">
+                Name
+            </div>
+            <div class="col-md-4 left">
+                Email
+            </div>
+            <div class="col-md-2 center">
+                <button onclick="printDialog(1)">Ver</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 center">
+                2
+            </div>
+            <div class="col-md-4 left">
+                Pedro
+            </div>
+            <div class="col-md-4 left">
+                Chaves
+            </div>
+            <div class="col-md-2 center">
+                <button onclick="printDialog(2)">Ver</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        const customers = [];
+
+        function getCustumerData() {
+            //Todo
+        }
+
+        function printTable() {
+            //Todo
+
+        }
+
+        // Na tabela o botão deve chamar a função printDialog para ver os detalhes do cliente
+        function printDialog(pos) {
+            const dialog = document.createElement("dialog");
+            const container = document.createElement("div");
+            container.setAttribute("class","row");
+
+            for(key in customers[pos]){
+                switch (key){ 
+                    case "firstname":
+                    case "lastname":
+                    case "gender":
+                    case "birthday":
+                    case "website":
+                    case "phone":{
+                        const label = document.createElement("div");
+                        label.setAttribute("class","col-md-4 left");
+                        label.innerText=key;
+                        const value = document.createElement("div");
+                        value.setAttribute("class","col-md-8 left");
+                        value.innerText=customers[pos][key];
+                        container.appendChild(label);
+                        container.appendChild(value);
+                        break;
+                    }
+                    case "image":{
+                        const label = document.createElement("div");
+                        label.setAttribute("class","col-md-4 left");
+                        label.innerText=key;
+                        const value = document.createElement("div");
+                        value.setAttribute("class","col-md-8 left");
+                        const divImg = document.createElement("img");
+                        divImg.setAttribute("src",customers[pos][key]);
+                        divImg.setAttribute("width","50");
+                        value.appendChild(divImg)
+                        container.appendChild(label);
+                        container.appendChild(value);
+                        break;
+                    }
+                    case "address":{
+                        const label = document.createElement("div");
+                        label.setAttribute("class","col-md-12");
+                        label.innerText="Location";
+                        const value = document.createElement("div");
+                        value.setAttribute("class","col-md-12");
+                        value.setAttribute("id","mapdialog");
+                        container.appendChild(label);
+                        container.appendChild(value);
+                        break;
+                    }
+                    default: 
+                        break;                    
+                }
+            }
+
+            const button = document.createElement("button");
+            button.innerText = "Fechar";
+            button.addEventListener("click", function () {
+                //esconde o dialog
+                dialog.close();
+                //remove o dialog do DOM
+                dialog.remove();
+            });
+            button.setAttribute("class","col-md-12 center");       
+            container.appendChild(button);
+            dialog.append(container);
+            document.getElementById('customerTable').appendChild(dialog);
+            dialog.show();
+            showMap(pos);
+        }
+
+        function showMap(pos) {
+            let lat = customers[pos].address.latitude;
+            let lon = customers[pos].address.longitude;
+            let zoomLevel = 10;
+            debugger
+            //Iniciar objeto mapa
+            let mymap = L.map('mapdialog').setView([lat, lon], zoomLevel);
+            //Colocar imagem do map a partir do openstreetmaps
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mymap);
+            //Adicionar marcador com a posição
+            L.marker([lat, lon]).addTo(mymap);
+        }
+
+        getCustumerData();
+
+    </script>
+
+</body>
+
+</html>
