@@ -1,10 +1,11 @@
-const tasks = ["Estudar PAW"];
+var tasks = ["Estudar PAW"];
 
 function removeFromList(task) {
     if (task) {
         let index = tasks.indexOf(task);
         tasks.splice(index, 1);
     }
+    saveInStorage(tasks);
 }
 
 function addToList(task) {
@@ -17,22 +18,26 @@ function addTask() {
         addToList(task);
         createItemTaskInHtml(task);
     }
+    saveInStorage(tasks);
 }
 
-function loadFromStorage(taskList) {
-    //ToDo load from the storage api
+function loadFromStorage() {
+    let taskList = JSON.parse(localStorage.getItem("taskList"));
+    tasks = taskList;
+    clearHtmlTasks();
+    loadHtmlTasks();
 }
 
 function saveInStorage(taskList) {
-    //ToDo save taskList in the storage api
+    localStorage.setItem("taskList", JSON.stringify(taskList));
 }
 
 function removeTask(task) {
     removeFromList(task);
     let articles = document.getElementById("taskList").childNodes;
-    
-    for(let i = 0; i < articles.length; i++){
-        if(articles[i].firstChild){
+
+    for (let i = 0; i < articles.length; i++) {
+        if (articles[i].firstChild) {
             articles[i].childNodes[1].removeEventListener;
             articles[i].parentNode.removeChild(articles[i]);
             return;
@@ -60,12 +65,26 @@ function createItemTaskInHtml(task) {
     taskList.appendChild(article);
 }
 
-function init() {
-    document.getElementById('addButton').addEventListener("click", addTask);
+function reloadTasks() {
+    clearHtmlTasks();
+    loadHtmlTasks();
+}
+
+function clearHtmlTasks() {
+    let taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+}
+
+function loadHtmlTasks() {
     tasks.forEach(function (item) {
         createItemTaskInHtml(item);
     })
+}
 
+function init() {
+    saveInStorage(tasks);
+    loadHtmlTasks();
+    document.getElementById('addButton').addEventListener("click", addTask);
 }
 
 init();
