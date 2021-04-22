@@ -20,6 +20,25 @@ app.get('/getfile', function (req, res) {
     let name = req.query.fname;
     let path = __dirname + "/uploads/" + name;
     if (fs.existsSync(path)) {
+        let controlPath = __dirname + "/controlLog.json"
+        fs.readFile(controlPath, function (err, data) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            let jsonLog = JSON.parse(data);
+            if (jsonLog[name]) {
+                jsonLog[name] = jsonLog[name] + 1
+            } else {
+                jsonLog[name] = 1;
+            }
+            fs.writeFile(controlPath, JSON.stringify(jsonLog), function (err, data) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+            })
+        })
         res.sendFile(path);
     } else {
         console.log('File not found');
