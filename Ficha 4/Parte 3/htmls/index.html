@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main Page</title>
+  </head>
+  <body>
+    <nav id="optionsNav">
+      <button onclick="answerForm()">Form</button><br /><br />
+      <label for="formNumber">Check form responses</label><br />
+      <input id="formNumber" type="number" value="1" />
+      <button onclick="getForm()">Enter</button>
+    </nav>
+    <section id="resultSection"></section>
+  </body>
+  <script>
+    function answerForm() {
+      window.open("http://localhost:3000/form", "_blank");
+    }
+
+    function getForm() {
+      debugger;
+      let formNumber = document.getElementById("formNumber").value;
+      console.log(formNumber);
+      if (formNumber) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            let section = document.getElementById("resultSection");
+            section.innerHTML = "";
+            let form = JSON.parse(xhttp.response);
+            for (let key in form) {
+              let paragraph = document.createElement("p");
+              paragraph.innerHTML = key + ": " + form[key];
+              section.appendChild(paragraph);
+            }
+          }
+        };
+
+        xhttp.open("get", `http://localhost:3000/seeForm?id=${formNumber}`);
+        xhttp.send();
+      }
+    }
+  </script>
+</html>

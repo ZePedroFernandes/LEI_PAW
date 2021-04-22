@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Satisfaction Form</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="José Fernandes" />
+    <meta name="description" content="A satisfaction form" />
+    <link rel="stylesheet" href="form_style_sheet.css" />
+  </head>
+
+  <body>
+    <form action="/formSubmit" method="POST">
+      <label for="age">Age</label>
+      <input id="age" name="age" type="number" value="18" /><br />
+
+      <label for="zip">Zip Code</label>
+      <input id="zip" name="zip" type="text" value="1923-312" /><br />
+      
+      <label for="food_quality">Food Quality</label>
+      <section class="five_star_rating">
+        <div class="rating_div">
+          <label class="radio_label" for="one_star">1</label>
+          <input id="one_star" type="radio" name="food_quality" value="one_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="two_star">2</label>
+          <input id="two_star" type="radio" name="food_quality" value="two_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="three_star">3</label>
+          <input id="three_star" type="radio" name="food_quality" value="three_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="four_star">4</label>
+          <input id="four_star" type="radio" name="food_quality" value="four_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="five_star">5</label>
+          <input id="five_star" type="radio" name="food_quality" value="five_star" checked/>
+        </div>
+      </section>
+      <br />
+    
+      <label for="price_satisfaction">Price</label>
+      <section class="collumn">
+        <div class="rating_div_collumn">
+          <input id="cheap" type="radio" name="price_satisfaction" value="cheap"/>
+          <label class="radio_label" for="cheap">Cheap</label>
+        </div>
+        <div class="rating_div_collumn">
+          <input id="acceptable" type="radio" name="price_satisfaction" value="acceptable" checked/>
+          <label class="radio_label" for="acceptable">Acceptable</label>
+        </div>
+        <div class="rating_div_collumn">
+          <input id="expensive" type="radio" name="price_satisfaction" value="expensive"/>
+          <label class="radio_label" for="expensive">Expensive</label>
+        </div>
+      </section>
+      <br />
+
+      <label for="waitering_Service">Waitering Service</label>
+      <section class="five_star_rating">
+        <div class="rating_div">
+          <label class="radio_label" for="one_star">1</label>
+          <input id="one_star" type="radio" name="waitering_Service" value="one_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="two_star">2</label>
+          <input id="two_star" type="radio" name="waitering_Service" value="two_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="three_star">3</label>
+          <input id="three_star" type="radio" name="waitering_Service" value="three_star"/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="four_star" >4</label>
+          <input id="four_star" type="radio" name="waitering_Service" value="four_star" checked/>
+        </div>
+        <div class="rating_div">
+          <label class="radio_label" for="five_star">5</label>
+          <input id="five_star" type="radio" name="waitering_Service" value="five_star"/>
+        </div>
+      </section>
+      <br />
+
+      <label for="confection_time">Confection Time</label>
+      <section class="collumn">
+        <div class="rating_div_collumn">
+          <input id="slow" type="radio" name="confection_time" value="slow"/>
+          <label class="radio_label" for="slow">Slow</label>
+        </div>
+        <div class="rating_div_collumn">
+          <input id="acceptable" type="radio" name="confection_time" value="acceptable" checked />
+          <label class="radio_label" for="acceptable">Acceptable</label>
+        </div>
+        <div class="rating_div_collumn">
+          <input id="fast" type="radio" name="confection_time" value="fast"/>
+          <label class="radio_label" for="fast">Fast</label>
+        </div>
+      </section>
+      <br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

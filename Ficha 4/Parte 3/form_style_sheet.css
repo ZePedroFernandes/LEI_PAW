@@ -1,0 +1,25 @@
+body {
+  display: flex;
+}
+
+form * {
+  display: flex;
+}
+
+.five_star_rating {
+  display: flex;
+  flex-direction: row;
+}
+
+.collumn {
+  flex-direction: column;
+}
+
+.rating_div {
+  flex-direction: column;
+}
+
+.radio_label {
+  display: flex;
+  justify-content: center;
+}
