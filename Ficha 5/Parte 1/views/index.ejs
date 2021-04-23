@@ -1,45 +1,73 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <form action="/books/review" method="POST">
-      <div class="inputGroup">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="Jon Doe" />
-      </div>
 
-      <div class="inputGroup">
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" value="jondoe@gmail.com" />
-      </div>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-      <div class="inputGroup">
-        <label for="book">Book:</label>
-        <input type="text" name="book" id="book" value="book_super_cool" />
-      </div>
+<body>
+  <h1>
+    <%= title %>
+  </h1>
 
-      <div class="inputGroup">
-        <label for="description">Description:</label>
-        <input
-          type="text"
-          name="description"
-          id="description"
-          value="Nice description"
-        />
-      </div>
+  <% if (errors) { %>
+    <ul>
+      <% errors.forEach(function(error){ %>
+        <li>
+          <%= error%>
+        </li>
+        <% }); %>
+    </ul>
+    <% } %>
 
-      <div>
-        <input type="radio" name="readed" value="read" checked/><span>read</span>
-        <input type="radio" name="readed" value="notRead" /><span>not read</span>
-      </div>
+      <form action="/books/review" method="POST">
+        <div class="inputGroup">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" <% if(typeof params !='undefined' ) { %>
+          value="<%= params.name %>"
+            <% }; %>/>
+        </div>
 
-      <div class="inputGroup">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-  </body>
+        <div class="inputGroup">
+          <label for="email">Email:</label>
+          <input type="text" name="email" id="email" <% if(typeof params !='undefined' ) { %>
+          value="<%= params.email %>"
+            <% }; %>/>
+        </div>
+
+        <div class="inputGroup">
+          <label for="book">Book:</label>
+          <input type="text" name="book" id="book" <% if(typeof params !='undefined' ) { %>
+          value="<%= params.book %>"
+            <% }; %>/>
+        </div>
+
+        <div class="inputGroup">
+          <label for="description">Description:</label>
+          <input type="text" name="description" id="description" <% if(typeof params !='undefined' ) { %>
+          value="<%= params.description %>"
+            <% }; %>/>
+        </div>
+
+        <div>
+          <input type="radio" name="readed" value="read" <% if(typeof params !='undefined' ) { %>
+          <%=params.readed=='read' ? 'checked' : '' %>
+            <% }; %>/><span>read</span>
+
+              <input type="radio" name="readed" value="notRead" <% if(typeof params !='undefined' ) { %>
+              <%=params.readed=='notRead' ? 'checked' : '' %>
+                <% }; %>
+                  /><span>not
+                    read</span>
+        </div>
+
+        <div class="inputGroup">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+</body>
+
 </html>

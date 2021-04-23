@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Reviews</title>
   </head>
@@ -21,7 +20,9 @@
           <td><%= review.book %></td>
           <td><%= review.name %></td>
           <td>
-            <a href="/books/review/<%= review.email %>/<%= review.book %>">Full Review</a>
+            <a href="/books/review/<%= review.email %>/<%= review.book %>"
+              >Full Review</a
+            >
           </td>
         </tr>
         <% }); %>
