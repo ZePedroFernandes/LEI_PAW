@@ -1,7 +1,21 @@
 const express = require('express');
 const fs = require('fs');
 const querystring = require('querystring');
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'tmp/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+})
+
+var upload = multer({ storage: storage })
+
 const app = express();
+app.use(upload.single('file'))
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/htmls/index.html");
