@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
 
-  <body>
-    <h1><%= title %></h1>
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
 
-    <div>
-      <label>Name:</label>
-      <span> <%= name %> </span>
-    </div>
+<body>
+  <h1>
+    <%= title %>
+  </h1>
 
-    <div>
-      <label>Email:</label>
-      <span> <%= email %> </span>
-    </div>
+  <div>
+    <label>Name:</label>
+    <span>
+      <%= name %>
+    </span>
+  </div>
 
-    <div>
-      <label>Book:</label>
-      <span> <%= book %> </span>
-    </div>
+  <div>
+    <label>Email:</label>
+    <span>
+      <%= email %>
+    </span>
+  </div>
 
-    <div>
-      <label>Description:</label>
-      <span> <%= description %> </span>
-    </div>
+  <div>
+    <label>Book:</label>
+    <span>
+      <%= book %>
+    </span>
+  </div>
 
-    <div>
-      <label>Readed:</label>
-      <span> <%= readed %> </span>
-    </div>
-  </body>
+  <div>
+    <label>Description:</label>
+    <span>
+      <%= description %>
+    </span>
+  </div>
+
+  <div>
+    <label>Readed:</label>
+    <span>
+      <%= readed %>
+    </span>
+  </div>
+
+  <div>
+    <img src=<%= imagePath %> alt="book image" width="20%">
+  </div>
+   
+</body>
+
 </html>
