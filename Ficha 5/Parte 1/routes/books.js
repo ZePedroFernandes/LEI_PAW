@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var fs = require('fs');
 var path = require('path');
 var multer = require('multer');
-var reviewsDir = 'data'
+var reviewsDir = 'data';
 var reviewsPath = path.join(__dirname, '..', 'public', reviewsDir);
 
 
@@ -35,11 +35,6 @@ router.get('/review', function (req, res) {
 
     const params = req.query;
     delete params.errors;
-
-    // console.log("Entering render phase");
-    // console.log(errors);
-    console.log(params);
-
 
     res.render('index.ejs', { title: 'Review', errors, params })
 });
