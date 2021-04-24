@@ -2,10 +2,16 @@ var express = require('express');
 var querystring = require('querystring');
 var fs = require('fs');
 var path = require('path');
+var multer = require('multer');
+
+var data = multer({ dest: 'data/' });
+
 var router = express.Router();
 
+//  var imgUpload = data.single('image');
+
 router.get('/review', function (req, res) {
-    console.log(req.query);
+    //console.log(req.query);
 
     let errors = [];
 
@@ -18,15 +24,20 @@ router.get('/review', function (req, res) {
     const params = req.query;
     delete params.errors;
 
-    console.log("Entering render phase");
-    console.log(errors);
+    // console.log("Entering render phase");
+    // console.log(errors);
     console.log(params);
+
 
     res.render('index.ejs', { title: 'Review', errors, params })
 });
 
 /* POST book review form */
-router.post('/review', function (req, res, next) {
+router.post('/review', data.single('image'), function (req, res) {
+    console.log(req.file);
+    const image = req.file;
+    const allowedImgExtensions = ['.jpg', '.png'];
+
     let params = {
         title: 'Book Review',
         ...req.body
@@ -60,6 +71,13 @@ router.post('/review', function (req, res, next) {
         errors.push("Missing read or not read option")
     }
 
+    if (image) {
+        const fileExtension = path.extname(image.originalname);
+        if (!allowedImgExtensions.includes(fileExtension)) {
+            errors.push("Invalid File Extension")
+        }
+    }
+
     if (errors.length > 0) {
         const query = querystring.stringify({
             errors,
@@ -72,8 +90,16 @@ router.post('/review', function (req, res, next) {
         return res.redirect('/books/review?' + query);
     }
 
-    let bookName = `${params.email}_${params.book}`;
-    let bookReviewPath = path.join(__dirname, '../data', bookName);
+    const reviewID = `${params.email}_${params.book}`;
+
+    const bookName = reviewID + '.json';
+    const bookReviewPath = path.join(__dirname, '../data', bookName);
+
+    const imageExtension = path.extname(image.originalname);
+    const imageName = reviewID + imageExtension;
+    req.file.filename = imageName;
+    req.file.path = path.join('data', imageName);
+    console.log(req.file);
 
     fs.writeFileSync(bookReviewPath, JSON.stringify(params));
 
