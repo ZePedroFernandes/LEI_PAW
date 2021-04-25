@@ -104,12 +104,12 @@ employeeController.filter = function (req, res) {
 };
 
 employeeController.filterList = function (req, res) {
-  console.log(req.query);
-
   let filters = {};
+  
   if (req.query.position) {
     filters['position'] = req.query.position;
   }
+
   if (req.query.salary) {
     filters['salary'] = { $gte: req.query.salary };
   }
