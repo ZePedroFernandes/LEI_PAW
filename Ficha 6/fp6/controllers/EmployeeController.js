@@ -99,4 +99,33 @@ employeeController.delete = function (req, res) {
   });
 };
 
+employeeController.filter = function (req, res) {
+  res.render("../views/employees/filter");
+};
+
+employeeController.filterList = function (req, res) {
+  console.log(req.query);
+
+  let filters = {};
+  if (req.query.position) {
+    filters['position'] = req.query.position;
+  }
+  if (req.query.salary) {
+    filters['salary'] = { $gte: req.query.salary };
+  }
+
+  console.log("Filtering employees: ", filters);
+
+  Employee.find(filters, function (err, employees) {
+    if (err) {
+      console.log("Error: ", err);
+    } else {
+      let list_file = path.join(__dirname, '..', 'views', 'employees', 'index');
+      console.log("Listing Filtered Employees");
+      res.render(list_file, { employees });
+    }
+  })
+
+}
+
 module.exports = employeeController;

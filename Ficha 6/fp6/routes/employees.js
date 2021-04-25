@@ -1,4 +1,5 @@
 var express = require('express');
+const employeeController = require('../controllers/EmployeeController.js');
 var router = express.Router();
 var employee = require("../controllers/EmployeeController.js");
 
@@ -22,5 +23,11 @@ router.post('/update/:id', employee.update);
 
 // Edit update
 router.post('/delete/:id', employee.delete);
+
+// Filters employee list
+router.get('/filter', employee.filter);
+
+// Filters employee list
+router.get('/filter/list', employee.filterList);
 
 module.exports = router;
