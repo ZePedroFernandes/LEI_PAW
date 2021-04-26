@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Reviews</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% reviews.forEach(function(review) { %>
+        <tr>
+          <td><%= review.book %></td>
+          <td><%= review.name %></td>
+          <td>
+            <a href="/books/review/<%= review.email %>/<%= review.book %>"
+              >Full Review</a
+            >
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>

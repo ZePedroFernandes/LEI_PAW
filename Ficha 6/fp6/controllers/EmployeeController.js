@@ -12,6 +12,7 @@ employeeController.list = function (req, res) {
       console.log("Error: ", err);
     } else {
       let list_file = path.join(__dirname, '..', 'views', 'employees', 'index');
+      console.log("Listing Employees: ", employees);
       res.render(list_file, { employees });
     }
   })
@@ -36,6 +37,7 @@ employeeController.create = function (req, res) {
 employeeController.save = function (req, res) {
   console.log("Received employee info: ");
   console.log(req.body);
+
   const employee = new Employee(req.body);
   console.log("Created Employee: " + employee);
 
@@ -105,7 +107,7 @@ employeeController.filter = function (req, res) {
 
 employeeController.filterList = function (req, res) {
   let filters = {};
-  
+
   if (req.query.position) {
     filters['position'] = req.query.position;
   }
