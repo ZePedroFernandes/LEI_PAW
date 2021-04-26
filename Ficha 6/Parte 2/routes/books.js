@@ -12,7 +12,9 @@ var storage = multer.diskStorage({
     }
 });
 
-var data = multer({ storage: storage });
+var data = multer({
+    storage: storage,
+});
 
 var router = express.Router();
 

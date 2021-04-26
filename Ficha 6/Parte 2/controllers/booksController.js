@@ -1,6 +1,7 @@
 var querystring = require('querystring');
 var fs = require('fs');
 var path = require('path');
+var Book = require('../models/Book');
 
 var booksController = {};
 
@@ -8,20 +9,13 @@ var reviewsDir = 'data';
 var reviewsPath = path.join(__dirname, '..', 'public', reviewsDir);
 
 booksController.listReviews = function (req, res) {
-    let reviews = [];
-
-    fs.readdirSync(reviewsPath).forEach(file => {
-        const bookReviewPath = path.join(reviewsPath, file);
-
-        try {
-            const bookReviewJSON = fs.readFileSync(bookReviewPath, 'utf8');
-            let review = JSON.parse(bookReviewJSON);
-            reviews.push(review);
-        } catch (e) {
+    Book.find().exec(function (err, books) {
+        if (err) {
+            console.log("Error: ", err);
+        } else {
+            res.render('bookTable', { reviews: books });
         }
-    });
-
-    res.status(200).render('bookTable', { reviews: reviews });
+    })
 }
 
 booksController.publishReview = function (req, res) {
@@ -83,12 +77,21 @@ booksController.publishReview = function (req, res) {
 
     const reviewID = `${params.email}_${params.book}`;
 
-    const bookName = reviewID + '.json';
-    const bookReviewPath = path.join(reviewsPath, bookName);
+    var book = new Book(req.body);
+    console.log(req.file.filename);
+    book.imagePath = `/${reviewsDir}/${req.file.filename}`;
+    book._id = reviewID;
 
-    fs.writeFileSync(bookReviewPath, JSON.stringify(params));
-
-    res.render('bookReview', params);
+    Book.deleteOne({ _id: reviewID }).then(
+        book.save((err) => {
+            if (err) {
+                console.log('Error: ', err);
+                res.render('/books/review');
+            } else {
+                console.log('Book saved: ', book);
+                res.render('bookReview', params);
+            }
+        }))
 }
 
 booksController.missingReviewFields = function (req, res) {
@@ -107,16 +110,25 @@ booksController.missingReviewFields = function (req, res) {
 }
 
 booksController.review = function (req, res) {
-    const bookName = `${req.params.email}_${req.params.livro}.json`;
-    const bookReviewPath = path.join(reviewsPath, bookName);
+    const reviewID = `${req.params.email}_${req.params.livro}`;
 
-    try {
-        const bookReviewJSON = fs.readFileSync(bookReviewPath, 'utf8');
-        let review = JSON.parse(bookReviewJSON);
-        res.status(200).render('bookReview', review);
-    } catch (e) {
-        res.status(404).send(`Review ${bookName} doesn´t exist`);
-    }
+    Book.findOne({ _id: reviewID }).exec(function (err, review) {
+        if (err) {
+            console.log("Error: ", err);
+        } else {
+            if (review) {
+                let params = {
+                    ...review._doc,
+                    title: "Book review"
+                }
+                console.log(params);
+                res.render('bookReview', params);
+            } else {
+                res.redirect('/books/reviews');
+            }
+        }
+    })
+
 }
 
 booksController.getImageName = function (req, file) {

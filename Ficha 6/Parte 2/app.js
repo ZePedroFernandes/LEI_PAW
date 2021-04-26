@@ -3,6 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+// mongoose setup
+mongoose.connect('mongodb://localhost/Books', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Mongo Connection Succesful'))
+  .catch((err) => console.error(err));
+
 
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
