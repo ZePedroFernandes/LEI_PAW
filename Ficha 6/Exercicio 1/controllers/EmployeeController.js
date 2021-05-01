@@ -49,7 +49,7 @@ employeeController.save = function (req, res) {
       console.log("Successfully saved an employee.");
       res.redirect('/employees/show/' + employee._id);
     }
-  })
+  });
 };
 
 employeeController.edit = function (req, res) {

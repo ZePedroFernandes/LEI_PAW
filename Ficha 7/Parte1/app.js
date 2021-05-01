@@ -1,41 +1,39 @@
+var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var logger = require('morgan');
+var swaggerUi = require('swagger-ui-express');
+var swaggerDocument = require('./swagger.json')
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+var indexRouter = require('./routes/index')
+var productsRouter = require('./routes/products');
 
-// If using MongoAtlas uncomment the next line and complete the link with your cluster
-//mongoose.connect('mongodb+srv://YOUR_MONGO_ATLAS_LINK', {useNewUrlParser: true} )
-mongoose.connect('mongodb://localhost/product-demo', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('mongo connection succesful'))
-  .catch((err) => console.error(err));
-
-var index = require('./routes/index');
-var employees = require('./routes/employees');
+mongoose.connect('mongodb://localhost:27017/product-demo', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Mongo Connection Succesful'))
+  .catch((err) => console.log(err));
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/employees', employees);
+app.use('/', indexRouter);
+app.use('/api/vi', productsRouter)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+  next(createError(404));
 });
 
 // error handler
