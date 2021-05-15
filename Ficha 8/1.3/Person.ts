@@ -11,7 +11,6 @@ export class Person {
 
     sayMyRole(): void {
         console.log(`Role: ${this.role}`);
-
     }
 }
 

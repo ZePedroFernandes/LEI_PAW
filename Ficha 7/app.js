@@ -6,6 +6,7 @@ var logger = require('morgan');
 var swaggerUi = require('swagger-ui-express');
 var swaggerDocument = require('./swagger.json')
 var mongoose = require('mongoose');
+var cors = require('cors');
 mongoose.Promise = global.Promise;
 
 var indexRouter = require('./routes/index')
@@ -21,6 +22,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
