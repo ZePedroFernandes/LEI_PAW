@@ -8,9 +8,15 @@ import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { JwtInterceptorServiceInterceptor } from './Interceptors/jwt-interceptor-service.interceptor';
+import { LoginComponent } from './login-component/login-component.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 const appRoutes: Routes = [
   {
@@ -32,12 +38,12 @@ const appRoutes: Routes = [
     path: 'product-edit/:id',
     component: ProductEditComponent,
     data: { title: 'Product Edit' }
-  },
+  }/* ,
   {
     path: '',
     redirectTo: '/products',
     pathMatch: 'full'
-  }
+  } */
 ]
 
 @NgModule({
@@ -46,16 +52,18 @@ const appRoutes: Routes = [
     ProductComponent,
     ProductAddComponent,
     ProductDetailComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [CookieService, {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorServiceInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -23,7 +23,7 @@ export class ProductAddComponent implements OnInit {
     console.log('Product Data: ', this.productData);
 
     this.rest.addProduct(this.productData).subscribe((result: Product) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/products']);
     }, (err) => {
       console.log(err);
     });

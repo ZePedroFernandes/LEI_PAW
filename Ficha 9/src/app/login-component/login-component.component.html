@@ -1,0 +1,18 @@
+<div class="container-fluid d-flex flex-column w-75 align-items-center mt-4">
+    <h1 class="pb-3">LOGIN</h1>
+    <form class="d-flex flex-column w-75">
+        <div class="mb-3">
+            <label class="form-label">Email address</label>
+            <input [(ngModel)]="email" name="email" type="email" class="form-control">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input [(ngModel)]="password" name="password" type="password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <span class="text-secondary">Dont have an account? </span><a href="/register">Register</a>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="login()" >Login</button>
+    </form>
+</div>

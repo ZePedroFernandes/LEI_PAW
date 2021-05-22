@@ -5,7 +5,11 @@ mongoose.set('useFindAndModify', false);
 var productController = {};
 
 productController.createProduct = function (req, res, next) {
-    const product = new Product(req.body);
+    const product = new Product({
+        name: req.body.name,
+        description: req.body.description,
+        quantity: req.body.quantity
+    });
 
     product.save((err) => {
         if (err) {

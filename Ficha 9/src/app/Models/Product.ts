@@ -1,11 +1,11 @@
 export class Product {
-    __id: String;
+    _id: String;
     name: String;
     description: String;
     quantity: Number;
 
-    constructor(__id: String, name: String, description: String, quantity: Number) {
-        this.__id = __id;
+    constructor(_id: String, name: String, description: String, quantity: Number) {
+        this._id = _id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;

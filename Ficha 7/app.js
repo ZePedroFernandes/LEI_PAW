@@ -11,6 +11,7 @@ mongoose.Promise = global.Promise;
 
 var indexRouter = require('./routes/index')
 var productsRouter = require('./routes/products');
+var authRouter = require('./routes/auth');
 
 mongoose.connect('mongodb://localhost:27017/product-demo', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Mongo Connection Succesful'))
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api/v1', productsRouter)
+app.use('/api/v1/auth', authRouter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
@@ -46,7 +48,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ message: 'error' });
 });
 
 module.exports = app;

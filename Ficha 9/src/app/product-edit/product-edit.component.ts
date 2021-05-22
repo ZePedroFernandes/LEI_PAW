@@ -15,15 +15,15 @@ export class ProductEditComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.rest.getProduct(this.route.snapshot.params['id'].subscribe((data: {}) => {
+    this.rest.getProduct(this.route.snapshot.params['id']).subscribe((data: {}) => {
       console.log(data);
       this.productData = data;
-    }))
+    })
   }
 
   updateProduct() {
     this.rest.updateProduct(this.route.snapshot.params['id'], this.productData).subscribe((result) => {
-      this.router.navigate(['/product-details/' + result.__id]);
+      this.router.navigate(['/product-details/', result._id]);
     }, (err) => {
       console.log(err);
     })
