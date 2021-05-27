@@ -28,7 +28,6 @@ function createToken(user) {
     return jwt.sign({ id: user._id, role: user.role }, config.secret, { expiresIn: 60 * 60 * 4 })
 }
 
-
 authController.logout = function (req, res) {
     res.json({ auth: false, token: null });
 }
