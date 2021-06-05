@@ -1,0 +1,10 @@
+<mat-grid-list cols="4" rowHeight="4:1">
+    <ng-container *ngFor="let note of notes; index as i">
+        <mat-grid-tile>{{i+1}}/{{notes.length}}</mat-grid-tile>
+        <mat-grid-tile>{{note.title}}</mat-grid-tile>
+        <mat-grid-tile> <button mat-button (click)="openDialog(i)">View Note</button> </mat-grid-tile>
+        <mat-grid-tile> <button mat-button (click)="removeNote(i)">Remove Note</button> </mat-grid-tile>
+    </ng-container>
+</mat-grid-list>
+
+<app-notes-details [note]="selectedNote"></app-notes-details>
