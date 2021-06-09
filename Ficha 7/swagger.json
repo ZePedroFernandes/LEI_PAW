@@ -5,7 +5,7 @@
         "title": "Product API",
         "description": "REST API for products"
     },
-    "host": "localhost:3000",
+    "host": "localhost:3001",
     "basePath": "/api/v1",
     "tags": [
         {
